@@ -18,16 +18,15 @@
 ## ABOUT ME
 ### 🌱 현재 학습 중
 - Python
-- Django
-- Git/Github
+- Java
 
 ### 📫 프로필
 - 이름: 진웨이얀
 - 학교: 이화여자대학교
 - 학과: 컴퓨터공학과
-- 관심 분야: [웹/앱/AI 등 관심있는 분야]
+- 관심 분야: Web Development, Machine Learning
 - 이메일: zinwaiyan2226@gmail.com
 - GitHub: ZinYan
 
 ### ⭐ 나의 각오
-피로그래밍 23기를 통해 [본인의 목표나 각오 작성]
+피로그래밍 23기를 통해 팀워크, 재미, 성장 세 마리 토끼 다 잡겠습니다!!
