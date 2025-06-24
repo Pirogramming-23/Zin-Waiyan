@@ -167,7 +167,7 @@
             </div>
             <style>
                 #search > form{
-                    display: inline-block;
+                    display: inline-flex;
                     width: 708px;
                     height: 60px;
                     border: 1px solid #03c75a;
@@ -175,11 +175,13 @@
                     text-align: left;
                 }
                 #search-svg{
-                    display: inline-block;
+                    display: inline-flex;
                     width: 68px;
                     margin-right: 12px;
                     height: 100%;
                     padding-left: 10px;
+                    justify-content: center;
+                    align-items: center;
                 }
                 #search-svg svg{
                     width: 24px;
@@ -196,7 +198,15 @@
                     font-weight: bold;
                 }
                 #search-right{
-                    display: inline-block;
+                    flex: 1;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: stretch;
+                }
+                #search-keyboard, #search-recent, #search-button{
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
                 }
                 #search-keyboard::before {
                     content: "";
