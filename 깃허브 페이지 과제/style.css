@@ -1,0 +1,171 @@
+* {
+    box-sizing: border-box;
+}
+html,body{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+    height: 100vh;
+}
+header, main{
+    background-color: #2b3137;
+}
+header{
+    display: flex;
+    height: 10vh;
+}
+#Header-right{
+    display: flex;
+    margin-left: 100px;
+    justify-content: center;
+    align-items: center;
+}
+#Header-right > div{
+    align-items: center;
+    width: 25px;
+    margin-right: 8px;
+}
+#nav > ul{
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+#nav button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    color: white;
+}
+#nav svg{
+    fill: gray;
+}
+
+#Header-left{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+#Header-left > div{
+    display: flex;
+    position: absolute;
+    left: 450px;
+}
+#search-input{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+input::placeholder{
+    color: white;
+}
+#search-input input{
+    height: 28px;
+    border-radius: 7px;
+    padding-left: 10px;
+    border: 0;
+    background: transparent;
+    background-color: rgba(126, 125, 125, 0.412);
+}
+#search-input button{
+    position: absolute;
+    right: 5px;
+    height: 20px;
+    border-radius: 3px;
+    border: 0.5px solid gray;
+    padding: 0px 8px ;
+    background: transparent;
+    background-color: rgba(126, 125, 125, 0.412);
+    color: rgb(164, 163, 163);
+    border-color: rgb(225, 223, 223);
+}
+#sign-in, #sign-up{
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    width: 80px;
+    cursor: pointer;
+}
+#sign-up{
+    border-radius: 8px;
+    border: 1px solid gray;
+    padding: 8px 15px;
+}
+
+main{
+    height: 75vh;
+    position: relative;
+}
+#main-left{
+    position: absolute;
+    top: 40px;
+    left: 250px;
+    color: white;
+}
+main h1{
+    font-size: 64px;
+    line-height: 1;
+}
+main p{
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+}
+main span{
+    color: white;
+}
+#main-right{
+    position: absolute;
+    right: 250px;
+    background-color: white;
+    width: 400px;
+    padding: 16px;
+    border-radius: 4px;
+}
+.input{
+    width:100%;
+    padding: 8px;
+}
+input::placeholder{
+    color: gray;
+}
+#main-right form div{
+    padding: 8px;
+}
+.input:focus{
+    background-color: rgb(209, 216, 236);
+}
+.optional-text{
+    font-size: 10px;
+    color: rgb(111, 110, 110);
+}
+.optional-text > span{
+    color: rgb(52, 158, 239);
+}
+#main-right button{
+    border: none;
+    background: rgb(26, 195, 77);
+    color: white;
+    border-radius: 4px;    
+    padding: 16px;
+}
+
+footer{
+    height: 20vh;
+    position: relative;
+}
+footer > img{
+    height: 100%;
+    position: absolute;
+    right: 100px;
+    bottom: 30px;
+}
+
+.label:hover,#sign-up:hover{
+    padding: 4px 8px;
+    border-radius: 4px;
+}
