@@ -18,8 +18,8 @@
     --heading2: 2.8rem;
     --heading3: 2.2rem;
     --subheading: 1.8rem;
-    --body1: 1.6rem;
-    --body2: 1.4rem;
+    --body1: 1.7rem;
+    --body2: 1.5rem;
     --caption: 1.2rem;
     --weight1: 400;
     --weight2: 500;
@@ -58,24 +58,135 @@ header{
     width: 100%;
     height: 9rem;
     padding: 0 var(--offset);
+    position: fixed;
+    top: 0;
+    z-index: 999;
+
 }
-header > div {
+header > div{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: min(1200px, 100%);
     height: 100%;
+    margin: auto;
+    padding: 0 40px;
 }
-
-header  a {
+header .logo{
     width: 40px;
     height: 40px;
 }
 header .nav{
     display: flex;
-    flex-wrap: wrap;
     gap: var(--gutter);
     font-size: 2rem;
 } 
 header .nav > li{
     padding: 5px;
 }
+#hamburger-icon{
+    display : none;
+}
+
+section{
+    padding: 90px var(--offset) 50px;
+    width: min(1200px, 100%);
+}
+.section-head{
+    height: 40px;
+    font-size: 1.7rem;
+    margin-bottom: var(--gutter);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-head > div{
+    font-size: var(--heading3);
+}
+.section-head a{
+    position: absolute;
+    right: 180px;
+    top: 110px;
+}
+.project{
+    width: 100%;
+    background-color: var(--bg-gray);
+    border-radius: 12px;
+    padding: var(--gutter);
+    gap: var(--gutter);
+    margin-bottom: var(--gutter);
+    display: flex;
+    position: relative;
+}
+.project-img > img{
+    width: 150px;
+    height: 110px;
+    border-radius: 8px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hamburger-menu{
+    width: 20px;
+    height: 20px;
+    /* of project */
+    position: absolute; 
+    right: var(--gutter);
+    top:var(--gutter);
+    /* for bars */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.hamburger-menu .bar{
+    width: 100%;
+    height: 2px;
+    background-color: var(--bg-5);
+    transition: 0.3s;
+}
+.hamburger-menu:hover .bar:first-child{
+    transform: scaleX(0.5);
+    transform-origin: left;
+}
+.hamburger-menu:hover .bar:last-child{
+    transform: scaleX(0.5);
+    transform-origin: right;
+}
+.project-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+.project-description .title{
+    font-size: 2.4rem;
+}
+.project-description .content{
+    font-size: 1.7rem;
+    color: var(--subtext-gray);
+    line-height: 2rem;
+}
+.project-description .members{
+    display: flex;
+    gap: 10px;;
+    margin-top: 15px;
+}
+.project-description .members li{
+    background-color: var(--bg-5);
+    padding: 6px 8px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    color: black;
+}
+.project-description .members .leader{
+    background-color: var(--blue);
+    color: white;
+}
+
+/* @media (min-width: 350px) and (max-width: 1400px) {
+  화면 폭 350~1400px 사이일 때만
+} */
+
+
+
