@@ -88,6 +88,9 @@ header .nav{
 header .nav > li{
     padding: 5px;
 }
+header .nav > li:nth-of-type(4){
+    color: var(--green-1);
+}
 header .nav li:hover {
   transform: translate(0px, -3px); 
 }
@@ -96,6 +99,111 @@ header .hamburger{
 }
 
 
+section{
+    padding: 90px var(--offset) 50px;
+    width: min(1200px, 100%);
+}
+.section-head{
+    height: 40px;
+    font-size: var(--body1);
+    margin-bottom: var(--gutter);
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    align-content: center;
+}
+
+.section-head > div{
+    font-size: var(--heading3);
+    justify-self: end;
+}
+.section-head a{
+    justify-self: end;
+}
+.hamburger-menu{
+    width: 20px;
+    height: 20px;
+    /* of project */
+    position: absolute; 
+    right: var(--gutter);
+    top:var(--gutter);
+    /* for bars */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.hamburger-menu .bar{
+    width: 100%;
+    height: 2px;
+    background-color: var(--bg-5);
+    transition: 0.3s;
+}
+.hamburger-menu:hover .bar:first-child{
+    transform: scaleX(0.5);
+    transform-origin: left;
+}
+.hamburger-menu:hover .bar:last-child{
+    transform: scaleX(0.5);
+    transform-origin: right;
+}
+.interview-grid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: var(--offset);
+    gap: var(--gutter);
+}
+.interview{
+    background-color: var(--bg-gray);
+    position: relative;
+    border-radius: 10px;
+    padding: var(--gutter);
+}
+.interview-description{
+    display: flex;
+    gap: var(--gutter);
+}
+.interview .profile{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.interview .profile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.interview .info{
+    font-size: var(--subheading);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+.interview .major, .interview .non-major, .interview .double-major{
+    background: var(--blue);
+    font-size: var(--body2);
+    color: var(--white);
+    padding: 6px 8px;
+    border-radius: 5px;
+}
+.interview .non-major{
+    background-color: var(--red);
+}
+.interview .double-major{
+    background-color: var(--badge-green);
+}
+.interview .intro{
+    font-size: var(--body1);
+    padding-top: var(--gutter);
+    line-height: 2rem;
+}
+.interview:hover{
+    top: -2px;
+}
+.interview:hover .profile img {
+  transform: scale(1.1);
+}
 
 
 
@@ -221,32 +329,14 @@ footer{
     }
 }
 
-@media screen and (max-width: 650px) {
-    .project {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding-top: var(--offset);
-    }
-    .project-img {
-        width: min(75%, 250px);
-        height: 160px;
-    }
-    .project-description .title{
-        margin-bottom: 10px;
-    }
-    .project-description .members{
-        justify-content: center;
+@media screen and (max-width: 850px) {
+    .interview-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
-@media screen and (max-width: 500px) {
-    .project-description .members {
-        display: grid;
-        grid-template-columns: repeat(3, 60px);
-        align-content: space-between;
-        justify-content: start;
-        align-items: end;
-        justify-items: end;
+@media screen and (max-width: 600px) {
+    .interview-grid {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
