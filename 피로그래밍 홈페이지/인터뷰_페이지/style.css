@@ -96,120 +96,6 @@ header .hamburger{
 }
 
 
-section{
-    padding: 90px var(--offset) 50px;
-    width: min(1200px, 100%);
-}
-.section-head{
-    height: 40px;
-    font-size: var(--body1);
-    margin-bottom: var(--gutter);
-    display: grid;
-    grid-template-columns: repeat(2,auto);
-    align-content: center;
-}
-
-.section-head > div{
-    font-size: var(--heading3);
-    justify-self: end;
-}
-.section-head a{
-    justify-self: end;
-}
-.project{
-    width: 100%;
-    background-color: var(--bg-gray);
-    border-radius: 12px;
-    padding: var(--gutter);
-    gap: var(--gutter);
-    margin-bottom: var(--gutter);
-    display: flex;
-    position: relative;
-    cursor: pointer;
-}
-.project:hover{
-    top: -2px;
-}
-.project-img{
-    width: 150px;
-    height: 110px;
-    border-radius: 8px;
-    background-color: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.project-img > img{
-    width: 100%;
-    object-fit: contain;
-    transition: 0.3s;
-    padding: 1rem 2rem;
-}
-.project:hover .project-img img {
-  transform: scale(1.1);
-}
-.hamburger-menu{
-    width: 20px;
-    height: 20px;
-    /* of project */
-    position: absolute; 
-    right: var(--gutter);
-    top:var(--gutter);
-    /* for bars */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.hamburger-menu .bar{
-    width: 100%;
-    height: 2px;
-    background-color: var(--bg-5);
-    transition: 0.3s;
-}
-.hamburger-menu:hover .bar:first-child{
-    transform: scaleX(0.5);
-    transform-origin: left;
-}
-.hamburger-menu:hover .bar:last-child{
-    transform: scaleX(0.5);
-    transform-origin: right;
-}
-.project-description{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px 0;
-}
-.project-description .title{
-    font-size: 2.4rem;
-}
-.project-description .content{
-    font-size: var(--body1);
-    color: var(--subtext-gray);
-    line-height: 2rem;
-}
-.project-description .members{
-    display: flex;
-    gap: 10px;;
-    margin-top: 15px;
-}
-.project-description .members li{
-    background-color: var(--bg-5);
-    padding: 6px 8px;
-    font-size: var(--body2);
-    border-radius: 5px;
-    color: black;
-}
-.project-description .members .leader{
-    background-color: var(--blue);
-    color: white;
-}
-
-/* @media (min-width: 350px) and (max-width: 1400px) {
-  화면 폭 350~1400px 사이일 때만
-} */
-
 
 
 
@@ -374,6 +260,9 @@ footer{
         display: none;
     }
 }
+
+
+
 
 
 
