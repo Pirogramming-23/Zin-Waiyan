@@ -88,12 +88,16 @@ header .nav{
 header .nav > li{
     padding: 5px;
 }
+header .nav > li:nth-of-type(4){
+    color: var(--green-1);
+}
 header .nav li:hover {
   transform: translate(0px, -3px); 
 }
 header .hamburger{
     display: none;
 }
+
 
 
 section{
@@ -125,7 +129,9 @@ section{
     margin-bottom: var(--gutter);
     display: flex;
     position: relative;
-    cursor: pointer;
+    cursor: url('https://cur.cursors-4u.net/nature/nat-4/nat354.ani'),
+         url('https://cur.cursors-4u.net/nature/nat-4/nat354.png'),
+         auto !important;
 }
 .project:hover{
     top: -2px;
@@ -233,6 +239,7 @@ footer{
     grid-template-rows: auto auto auto;
     gap: 1rem;
     padding-right: 100px;
+    cursor: pointer;
 }
 .footer-top .footer-left .footer-title {
     gap: 0.5rem;
@@ -281,11 +288,13 @@ footer{
   display: grid;
   grid-template-columns: repeat(6,auto);
   align-content: center;
+  cursor: url('https://cur.cursors-4u.net/nature/nat-4/nat354.ani'),
+         url('https://cur.cursors-4u.net/nature/nat-4/nat354.png'),
+         auto !important;
 }
 .footer-right li{
     padding: 0 2rem;
     border-right: 1px solid var(--line-gray);
-    cursor: pointer;
 }
 .footer-right li:hover{
   transform: translate(0px, -3px); 

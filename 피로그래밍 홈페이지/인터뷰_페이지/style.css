@@ -157,6 +157,10 @@ section{
     position: relative;
     border-radius: 10px;
     padding: var(--gutter);
+    cursor: url('https://cur.cursors-4u.net/nature/nat-4/nat354.ani'),
+         url('https://cur.cursors-4u.net/nature/nat-4/nat354.png'),
+         auto !important;
+    
 }
 .interview-description{
     display: flex;
@@ -279,7 +283,9 @@ footer{
 .footer-right li{
     padding: 0 2rem;
     border-right: 1px solid var(--line-gray);
-    cursor: pointer;
+    cursor: url('https://cur.cursors-4u.net/nature/nat-4/nat354.ani'),
+         url('https://cur.cursors-4u.net/nature/nat-4/nat354.png'),
+         auto !important;
 }
 .footer-right li:hover{
   transform: translate(0px, -3px); 
