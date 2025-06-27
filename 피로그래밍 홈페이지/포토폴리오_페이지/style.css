@@ -88,6 +88,12 @@ header .nav{
 header .nav > li{
     padding: 5px;
 }
+header .nav li:hover {
+  transform: translate(0px, -3px); 
+}
+header .hamburger{
+    display: none;
+}
 
 
 section{
@@ -98,17 +104,17 @@ section{
     height: 40px;
     font-size: var(--body1);
     margin-bottom: var(--gutter);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    align-content: center;
 }
+
 .section-head > div{
     font-size: var(--heading3);
+    justify-self: end;
 }
 .section-head a{
-    position: absolute;
-    right: 180px;
-    top: 110px;
+    justify-self: end;
 }
 .project{
     width: 100%;
@@ -119,8 +125,12 @@ section{
     margin-bottom: var(--gutter);
     display: flex;
     position: relative;
+    cursor: pointer;
 }
-.project-img > img{
+.project:hover{
+    top: -2px;
+}
+.project-img{
     width: 150px;
     height: 110px;
     border-radius: 8px;
@@ -128,6 +138,16 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+.project-img > img{
+    width: 100%;
+    object-fit: contain;
+    transition: 0.3s;
+    padding: 1rem 2rem;
+}
+.project:hover .project-img img {
+  transform: scale(1.1);
 }
 .hamburger-menu{
     width: 20px;
@@ -247,6 +267,15 @@ footer{
     width: 70%;
     height: 70%;
 }
+.footer-title:hover{
+  transform: translate(0px, -3px); 
+}
+.footer-icons a:hover{
+  transform: translate(0px, -3px); 
+}
+.footer-email:hover{
+  transform: translate(0px, -3px); 
+}
 /* top-right */
 .footer-top .footer-right {
   display: grid;
@@ -256,6 +285,10 @@ footer{
 .footer-right li{
     padding: 0 2rem;
     border-right: 1px solid var(--line-gray);
+    cursor: pointer;
+}
+.footer-right li:hover{
+  transform: translate(0px, -3px); 
 }
 .footer-right li:last-child{
     border-right: 0;
@@ -271,14 +304,76 @@ footer{
 }
 
 
+/* Responsive */
 
+@media screen and (max-width: 800px){
+    header{
+        height: 7rem;
+        padding: 0 16px;
+    }
+    header .nav{
+        display: none;
+    }
+    header .hamburger{
+        display: flex;
+        width: 30px;
+        flex-direction: column;
+    }
+    header .hamburger > div{
+        height: 3px;
+        background-color: var(--white);
+        margin: 3px 0;
+    }
+    header .hamburger > div:nth-of-type(1){
+        width: 50%;
+    }
+    header .hamburger > div:nth-of-type(2){
+        width: 100%;
+    }
+    header .hamburger > div:nth-of-type(3){
+        width: 75%;
+    }
+}
 
+@media screen and (max-width: 650px) {
+    .project {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: var(--offset);
+    }
+    .project-img {
+        width: min(75%, 250px);
+        height: 160px;
+    }
+    .project-description .title{
+        margin-bottom: 10px;
+    }
+    .project-description .members{
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 500px) {
+    .project-description .members {
+        display: grid;
+        grid-template-columns: repeat(3, 60px);
+        align-content: space-between;
+        justify-content: start;
+        align-items: end;
+        justify-items: end;
+    }
+}
 
-
-
-
-
-
+@media screen and (max-width: 1080px) {
+    .footer-top{
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 2rem;
+    }
+    .footer-top .footer-right{
+        display: none;
+    }
+}
 
 
 
