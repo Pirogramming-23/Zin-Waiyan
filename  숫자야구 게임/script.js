@@ -23,34 +23,168 @@
 
 // 남은 횟수 출력
 
-let attempts = 9;
+let attemptsLimit = 9;
 let answer = []
+const submitButton = document.querySelector(".submit-button");
+const attemptsTime = document.getElementById("attempts");
+const inputBox = document.querySelector(".input-box");
+
 
 // 초기화 함수
 function initializeGame() {
     // 시도 횟수 초기화
-    attempts = 9;
-    document.getElementById("attempts").innerText = attempts;
+    attemptsLimit = 9;
+    attemptsTime.innerText = attemptsLimit;
 
     //랜덤 숫자 3개 생성
     answer = [];
     while(answer.length<3){
         const random_num = Math.floor(Math.random()*10);
-        if (!(answer.includes(random_num))){
+        if (!answer.includes(random_num)){
             answer.push(random_num);
         }
     }
+    console.log(answer);
 
     // input 내용 비움
-    document.getElementById("number1").value = '';
-    document.getElementById("number2").value = '';
-    document.getElementById("number3").value = '';
+    EmptyInput();
     // 결과 이미지 비움
     document.getElementById("game-result-img").src = '';
     // 결과 비움
     document.getElementById("results").innerHTML = '';
     // 클릭 버튼 다시 활성화
-    document.querySelector(".submit-button").disabled = false;
+    submitButton.disabled = false;
+}
+
+function EmptyInput(){
+    // input 내용 비움
+    document.getElementById("number1").value = '';
+    document.getElementById("number2").value = '';
+    document.getElementById("number3").value = '';
+
+    document.getElementById("number1").focus();
 }
 
 // 숫자 확인 함수 
+function check_numbers(){
+    const num1 = document.getElementById("number1").value;
+    const num2 = document.getElementById("number2").value;
+    const num3 = document.getElementById("number3").value;
+    const numList = [num1,num2,num3];
+
+    // 숫자 3개 중 입력되지 않은 input 있으면 비우기
+    if (numList.includes("")){
+        numList.forEach((_,index) => {
+            document.getElementById(`number${index+1}`).value = '';
+        })
+        return;
+    }
+
+
+    // 숫자로 바꾸기
+    const guess = numList.map(Number);
+
+    // 숫자 비교
+    let strike = 0;
+    let ball = 0;
+    for(let i=0;i<3;i++){
+        if(guess[i]===answer[i]){
+            strike += 1;
+        }
+        else if(answer.includes(guess[i])){
+            ball += 1;
+        }
+    }
+
+    displayResult(numList,strike,ball);
+    EmptyInput();
+
+    attemptsLimit--;
+    attemptsTime.innerText = attemptsLimit;
+    // 게임 끝인지 체크 
+    if(strike===3){
+        document.getElementById("game-result-img").src = "./success.png";
+        submitButton.disabled = true;
+    }
+    else if(attemptsLimit===0){
+        document.getElementById("game-result-img").src = "./fail.png";
+        submitButton.disabled = true;
+    }
+
+}
+
+
+function displayResult(numList,strike,ball){
+    const resultDisplay = document.querySelector('.result-display');
+    const resultDiv = document.createElement('div');
+    resultDiv.className = 'check-result';
+
+
+
+
+    const leftSide = document.createElement("div");
+    leftSide.classList.add("left");
+    numList.forEach(num => {
+        const numSpan = document.createElement("span");
+        numSpan.innerText = `${num} `;
+        leftSide.appendChild(numSpan);
+    });
+
+    const rightSide = document.createElement("div");
+    rightSide.classList.add("right");
+    if(strike===0 && ball ===0){
+        const out = document.createElement("span");
+        out.innerText = `O`;
+        out.classList.add("out","num-result");
+        rightSide.appendChild(out);
+    }
+    else{
+        const strikeSpan = document.createElement("span");
+        const strikeNum = document.createElement("span");
+        strikeSpan.innerText = "S";
+        strikeSpan.classList.add("strike","num-result");
+        strikeNum.innerText = `${strike} `
+
+        const ballSpan = document.createElement("span");
+        const ballNum = document.createElement("span");
+        ballSpan.innerText = "B";
+        ballSpan.classList.add("ball","num-result");
+        ballNum.innerText = ` ${ball} `
+
+
+
+        rightSide.appendChild(strikeNum);
+        rightSide.appendChild(strikeSpan);
+        rightSide.appendChild(ballNum);
+        rightSide.appendChild(ballSpan);
+
+    }
+    
+    resultDiv.appendChild(leftSide);
+    const colon = document.createElement("span");
+    colon.classList.add("num-result");
+    colon.innerText = " : ";
+    resultDiv.appendChild(colon);
+    resultDiv.appendChild(rightSide);
+
+    resultDisplay.appendChild(resultDiv);
+
+
+}
+
+
+// Enter key 누르면 확인버튼 클릭
+inputBox.addEventListener("keypress", (event) => {
+    if (event.code === "Enter"){
+        submitButton.click();
+    }
+});
+
+//main
+initializeGame();
+
+
+
+
+// Enter key 누르면 확인버튼 클릭
+// 남은 횟수 표현 구현
