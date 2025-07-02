@@ -51,9 +51,11 @@ function initializeGame() {
     // 결과 이미지 비움
     document.getElementById("game-result-img").src = '';
     // 결과 비움
-    document.getElementById("results").innerHTML = '';
+    document.querySelector(".result-display").innerHTML = '';
     // 클릭 버튼 다시 활성화
     submitButton.disabled = false;
+    // 색 초기화
+    document.querySelector('.remaining-attempts').style.color = 'black';
 }
 
 function EmptyInput(){
@@ -71,15 +73,15 @@ function check_numbers(){
     const num2 = document.getElementById("number2").value;
     const num3 = document.getElementById("number3").value;
     const numList = [num1,num2,num3];
-
+    
     // 숫자 3개 중 입력되지 않은 input 있으면 비우기
     if (numList.includes("")){
         numList.forEach((_,index) => {
             document.getElementById(`number${index+1}`).value = '';
         })
+        document.getElementById("number1").focus();
         return;
     }
-
 
     // 숫자로 바꾸기
     const guess = numList.map(Number);
@@ -97,19 +99,68 @@ function check_numbers(){
     }
 
     displayResult(numList,strike,ball);
+    
+    const unique = new Set(numList);
+    if (unique.size < 3) {
+        // 에러 메시지 생성
+        const msg = document.createElement("div");
+        msg.textContent = "같은 숫자는 사용할 수 없습니다!";
+        msg.style.color = "red";
+        msg.style.fontWeight = "bold";
+        msg.id = "error-message";
+        inputBox.appendChild(msg);
+
+        EmptyInput();
+
+        // 1초 후 사라짐
+        setTimeout(() => {
+            if (msg && msg.parentNode) {
+                msg.remove();
+            }
+        }, 1000);
+    }
+
     EmptyInput();
 
     attemptsLimit--;
     attemptsTime.innerText = attemptsLimit;
+
+    const red = 255;
+    const greenBlue = Math.floor(180 * (attemptsLimit / 9)); // 점점 어두워짐
+
+    document.querySelector('.remaining-attempts').style.color = `rgb(${red}, ${greenBlue}, ${greenBlue})`;
+
     // 게임 끝인지 체크 
+    const resultImg = document.getElementById("game-result-img");
+    // 성공
     if(strike===3){
-        document.getElementById("game-result-img").src = "./success.png";
+        resultImg.src = "./success.png";
         submitButton.disabled = true;
+
+        // 이미지 커짐
+        resultImg.style.transition = "transform 0.5s ease";
+        resultImg.style.transform = "scale(1.5)";
+
+        // 0.8초 뒤 자동 리셋
+        setTimeout(() => {
+            initializeGame();
+        }, 800);
     }
     else if(attemptsLimit===0){
-        document.getElementById("game-result-img").src = "./fail.png";
+        resultImg.src = "./fail.png";
         submitButton.disabled = true;
+
+        // 이미지 작아짐
+        resultImg.style.transition = "transform 0.5s ease";
+        resultImg.style.transform = "scale(0.7)";
+
+        // 0.8초 뒤 자동 리셋
+        setTimeout(() => {
+            initializeGame();
+        }, 800);
     }
+
+
 
 }
 
@@ -132,12 +183,17 @@ function displayResult(numList,strike,ball){
 
     const rightSide = document.createElement("div");
     rightSide.classList.add("right");
+
     if(strike===0 && ball ===0){
         const out = document.createElement("span");
         out.innerText = `O`;
         out.classList.add("out","num-result");
         rightSide.appendChild(out);
     }
+
+
+
+
     else{
         const strikeSpan = document.createElement("span");
         const strikeNum = document.createElement("span");
@@ -183,8 +239,20 @@ inputBox.addEventListener("keypress", (event) => {
 //main
 initializeGame();
 
+// 자도 focus
+["number1", "number2", "number3"].forEach((id, idx, arr) => {
+  document.getElementById(id).addEventListener("input", () => {
+    const input = document.getElementById(id);
+    if (input.value.length === 1 && idx < arr.length - 1) {
+      document.getElementById(arr[idx + 1]).focus();
+    }
+  });
+});
 
 
 
 // Enter key 누르면 확인버튼 클릭
 // 남은 횟수 표현 구현
+// 성공 실패하고 3초 뒤 자동 리셋 하기
+// 한 글자 입력하면 다음 input으로 자동 이동 향상 탭 치는게 불편해서 
+// 같은 숫자면 힌트처럼 에러 메세지 뜨기
