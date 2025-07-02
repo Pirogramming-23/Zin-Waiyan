@@ -16,10 +16,31 @@ function displayItems(items){
 function createHTMLString(item){
     return `
         <li class="item">
-            <img src="img/yellow_p.png" alt="" class="item__thumbnail">
-            <span class="item__description">male, large</span>
+            <img src="${item.image}" alt="${item.type}" class="item__thumbnail">
+            <span class="item__description">${item.gender}, ${item.size}</span>
         </li>
     `;
+}
+
+// Handle button click
+function onButtonClick(event, items){
+    const dataset = event.target.dataset;
+    const key = dataset.key;
+    const value = dataset.value;
+
+    if (key==null || value==null){
+        return;
+    }
+    const filtered = items.filter(item => item[key]===value);
+    displayItems(filtered);    
+}
+
+
+function setEventListeners(items){
+    const logo = document.querySelector(".logo");
+    const buttons = document.querySelector(".buttons");
+    logo.addEventListener('click',() => displayItems(items));
+    buttons.addEventListener('click', event => onButtonClick(event,items));
 }
 
 // main
@@ -27,6 +48,6 @@ loadItems()
     .then(items => {
         console.log(items);
         displayItems(items);
-        // setEventListeners(items)
+        setEventListeners(items)
     })
     .catch(console.log);
