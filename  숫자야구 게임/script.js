@@ -141,10 +141,10 @@ function check_numbers(){
         resultImg.style.transition = "transform 0.5s ease";
         resultImg.style.transform = "scale(1.5)";
 
-        // 0.8초 뒤 자동 리셋
+        // 3초 뒤 자동 리셋
         setTimeout(() => {
             initializeGame();
-        }, 800);
+        }, 3000);
     }
     else if(attemptsLimit===0){
         resultImg.src = "./fail.png";
@@ -154,10 +154,10 @@ function check_numbers(){
         resultImg.style.transition = "transform 0.5s ease";
         resultImg.style.transform = "scale(0.7)";
 
-        // 0.8초 뒤 자동 리셋
+        // 3초 뒤 자동 리셋
         setTimeout(() => {
             initializeGame();
-        }, 800);
+        }, 3000);
     }
 
 
@@ -239,7 +239,7 @@ inputBox.addEventListener("keypress", (event) => {
 //main
 initializeGame();
 
-// 자도 focus
+// 자동 focus
 ["number1", "number2", "number3"].forEach((id, idx, arr) => {
   document.getElementById(id).addEventListener("input", () => {
     const input = document.getElementById(id);
