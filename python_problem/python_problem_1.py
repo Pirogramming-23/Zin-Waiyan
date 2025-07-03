@@ -17,4 +17,8 @@ while True:
             break
     except ValueError:
         print("정수를 입력하세요")
-    
+
+# 4단계
+for i in range(n):
+    num += 1
+    print(f"playerA : {num}")
