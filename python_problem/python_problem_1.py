@@ -65,3 +65,8 @@ while num<31:
 
     # 텀 바뀌기
     turn = 1 - turn
+
+# 7단계
+# 승자 출력
+winner = "playerB" if turn == 0 else "playerA"
+print(f"{winner} win!")
