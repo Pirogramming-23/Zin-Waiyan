@@ -46,7 +46,7 @@ body{
 
 .display__container #display{
     background-color: var(--bg-color);
-    padding: 10px 120px;
+    padding: 10px 70px;
     margin-bottom: 16px;
     border-radius: 50px;
     white-space: nowrap;
@@ -108,21 +108,21 @@ input[type="checkbox"] {
     width: 20px;
 }
 
-#startBtn{
+#startBtn, #startTimerBtn{
     background-color: hsl(231, 100%, 50%);
 }
-#startBtn:hover{
+#startBtn:hover, #startTimerBtn:hover{
     background-color: hsl(231, 100%, 30%);
 }
-#stopBtn{
+#stopBtn, #stopTimerBtn{
     background-color: hsl(10, 90%, 50%);
 }
-#stopBtn:hover{
+#stopBtn:hover, #stopTimerBtn:hover{
     background-color: hsl(10, 90%, 30%);
 }
-#resetBtn{
+#resetBtn, #resetTimerBtn{
     background-color: hsl(263, 90%, 50%);
 }
-#resetBtn:hover{
+#resetBtn:hover, #resetTimerBtn:hover{
     background-color: hsl(263, 90%, 30%);
 }

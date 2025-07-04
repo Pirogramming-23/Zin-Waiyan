@@ -7,7 +7,6 @@ let elapsedTime = 0;
 let running = false;
 let id=0;
 
-
 function start(){
     if(!running){
         // Date.now() : 지금 시간
@@ -18,24 +17,29 @@ function start(){
     }
 }
 
+
+
 function stop(){
     if(running){
         // update 함수 부르기를 멈춘다
         clearInterval(timer);
         const currentTime = Date.now();
         elapsedTime = currentTime-startTime;
-        // second, milliseconds 로 바뀌기
+        // minutes, second, milliseconds 로 바뀌기
+        let minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
         let seconds = Math.floor(elapsedTime/1000%60);
         let milliseconds = Math.floor(elapsedTime%1000/10);
         // 0 두개 붙이기
+        minutes = String(minutes).padStart(2,"0");
         seconds = String(seconds).padStart(2,"0");
         milliseconds = String(milliseconds).padStart(2,"0");
 
         id++;
         running = false;
-        createRecord(`${id}`,`${seconds} : ${milliseconds}`);
+        createRecord(`${id}`,`${minutes} : ${seconds} : ${milliseconds}`);
         attachCheckboxListeners();
     }
+    updateHeaderCheckbox();
 }
 
 function reset(){
@@ -43,7 +47,8 @@ function reset(){
     startTime = 0;
     elapsedTime = 0;
     running = false;
-    display.textContent = "00 : 00";
+    display.textContent = "00 : 00: 00";
+    updateHeaderCheckbox();
 }
 
 
@@ -55,8 +60,6 @@ recordHeadCheckbox.addEventListener("change", () => {
     input.checked = recordHeadCheckbox.checked;
   });
 });
-
-
 // 전체 선택 버튼 구현
 function updateHeaderCheckbox() {
   const recordCheckboxes = document.querySelectorAll(".record__content input[type='checkbox']");
@@ -88,6 +91,7 @@ function deleteRecord(){
             record.remove();
         }
     });
+    updateHeaderCheckbox();
 }
 
 
@@ -130,17 +134,68 @@ function update(){
     const currentTime = Date.now();
     elapsedTime = currentTime-startTime;
 
-    // second, milliseconds 로 바뀌기
+    let minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
     let seconds = Math.floor(elapsedTime/1000%60);
     let milliseconds = Math.floor(elapsedTime%1000/10);
 
     // 0 두개 붙이기
+    minutes = String(minutes).padStart(2,"0");
     seconds = String(seconds).padStart(2,"0");
     milliseconds = String(milliseconds).padStart(2,"0");
 
-    display.textContent = `${seconds} : ${milliseconds}`;
+    display.textContent = `${minutes} : ${seconds} : ${milliseconds}`;
 }
 
+
+// Timer 기능
+let timeLeft = 0;
+let timerInterval = null;
+
+
+function updateTimer(timeLeft) {
+    // second, milliseconds 로 바뀌기
+    let minutes = Math.floor(timeLeft / (1000 * 60) % 60);
+    let seconds = Math.floor(timeLeft/1000%60);
+    let milliseconds = Math.floor(timeLeft%1000/10);
+
+    // 0 두개 붙이기
+    minutes = String(minutes).padStart(2,"0");
+    seconds = String(seconds).padStart(2,"0");
+    milliseconds = String(milliseconds).padStart(2,"0");
+
+    display.textContent = `${minutes} : ${seconds} : ${milliseconds}`;
+
+}
+
+function startTimer() {
+    // let timeLeft = prompt("설정할 시간을 초 단위로 입력하세요.");
+    const secondsInput = prompt("설정할 시간을 초 단위로 입력하세요:");
+    const seconds = parseInt(secondsInput);
+
+    timeLeft = seconds * 1000;
+    updateTimer(timeLeft);
+
+    timerInterval = setInterval(() => {
+        timeLeft --;
+        updateTimer(timeLeft);
+
+        if(timeLeft <= 0){
+            clearInterval(timerInterval);
+            timeLeft = 0;
+            updateTimer(timeLeft);
+            alert("시간초과!");
+        }
+    },10)
+}
+function stopTimer() {clearInterval(timerInterval)}
+
+
+
+function resetTimer(){
+    clearInterval(timerInterval);
+    timeLeft = 0;
+    updateTimer(timeLeft);
+}
 
 
 
