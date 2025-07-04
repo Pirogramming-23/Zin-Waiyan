@@ -34,6 +34,7 @@ function stop(){
         id++;
         running = false;
         createRecord(`${id}`,`${seconds} : ${milliseconds}`);
+        attachCheckboxListeners();
     }
 }
 
@@ -54,6 +55,28 @@ recordHeadCheckbox.addEventListener("change", () => {
     input.checked = recordHeadCheckbox.checked;
   });
 });
+
+
+// 전체 선택 버튼 구현
+function updateHeaderCheckbox() {
+  const recordCheckboxes = document.querySelectorAll(".record__content input[type='checkbox']");
+  const allChecked = Array.from(recordCheckboxes).every(input => input.checked);
+
+  // 다 체크 -> 헤더 체크
+  // 다 안 체크 -> 헤더 안 체크
+  if (allChecked) {
+    recordHeadCheckbox.checked = true;
+  } else {
+    recordHeadCheckbox.checked = false;
+  }
+}
+function attachCheckboxListeners() {
+  const recordCheckboxes = document.querySelectorAll(".record__content input[type='checkbox']");
+  recordCheckboxes.forEach(input => {
+    input.addEventListener("change", updateHeaderCheckbox);
+  });
+}
+
 
 function deleteRecord(){
     const records = document.querySelectorAll(".record__content");
