@@ -56,14 +56,15 @@ body{
     font-size: 1.2rem;
     border: none;
     border-radius: 15px;
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); */
     padding: 10px 15px;
     cursor: pointer;
+    color: var(--bg-color);
     transition: background-color 0.5s ease;
 }
-.controls button:hover{
+/* .controls button:hover{
     background-color: hsl(0,0%,80%);
-}
+} */
 
 .record__container{
     display: flex;
@@ -102,4 +103,26 @@ input[type="checkbox"] {
     background: none;
     font-size: 1.2rem;
     cursor: pointer;
+}
+.record__content .emptyDiv{
+    width: 20px;
+}
+
+#startBtn{
+    background-color: hsl(231, 100%, 50%);
+}
+#startBtn:hover{
+    background-color: hsl(231, 100%, 30%);
+}
+#stopBtn{
+    background-color: hsl(10, 90%, 50%);
+}
+#stopBtn:hover{
+    background-color: hsl(10, 90%, 30%);
+}
+#resetBtn{
+    background-color: hsl(263, 90%, 50%);
+}
+#resetBtn:hover{
+    background-color: hsl(263, 90%, 30%);
 }

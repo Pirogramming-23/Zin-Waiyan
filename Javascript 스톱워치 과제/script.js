@@ -74,7 +74,7 @@ function createRecord(id,Text){
     //             <label for="record1"></label>
     //             <div></div> 
     //         </div> -->
-    
+
     // Record content
     const record_content = document.createElement("div")
     record_content.id = `record_${id}`;
@@ -92,6 +92,7 @@ function createRecord(id,Text){
 
     //placeholder Div
     const emptyDiv = document.createElement("div");
+    emptyDiv.className = "emptyDiv";
 
     record_content.appendChild(input);
     record_content.appendChild(label);
