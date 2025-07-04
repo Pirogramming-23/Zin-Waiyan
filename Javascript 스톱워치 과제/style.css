@@ -44,11 +44,12 @@ body{
     margin-bottom: 50px;
 }
 
-.display__container .display{
+.display__container #display{
     background-color: var(--bg-color);
-    padding: 10px 140px;
+    padding: 10px 120px;
     margin-bottom: 16px;
     border-radius: 50px;
+    white-space: nowrap;
 }
 
 .controls button{
@@ -89,14 +90,16 @@ input[type="checkbox"] {
     width: 25px;                         
     height: 25px;                        
     clip-path: circle(46% at 50% 50%);   
+    cursor: pointer;
 }
 
 .record__container label{
     font-size: 1.2rem;
 }
 
-.record__container button{
+.record__header button{
     border: none;
     background: none;
     font-size: 1.2rem;
+    cursor: pointer;
 }
