@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="container">
+        <div id="H1">
+            <i class="ri-timer-fill"></i>
+            <h1>피로그래밍 스톱워치</h1>
+        </div>
+        <div class="display__container">
+            <div id="display">00 : 00 : 00</div>
+            <div class="controls">
+                <button id="startBtn" onclick="start()">start</button>
+                <button id="stopBtn" onclick="stop()">stop</button>
+                <button id="resetBtn" onclick="reset()">reset</button>
+            </div>
+            <div class="controls">
+                <button id="startTimerBtn" onclick="startTimer()">start timer</button>
+                <button id="stopTimerBtn" onclick="stopTimer()">stop timer</button>
+                <button id="resetTimerBtn" onclick="resetTimer()">reset timer</button>
+            </div>
+        </div>
+        <div class="record__container">
+            <div class="record__header">
+                <input type="checkbox" id="record__head">
+                <label for="record__head"><strong>구간 기록</strong></label>
+                <button onclick="deleteRecord()">
+                    <i class="ri-delete-bin-7-fill"></i>
+                </button>
+            </div>
+            <!-- <div id="record_1" class="record__content">
+                <input type="checkbox" id="record1">
+                <label for="record1" >hi</label>
+                <div></div> 
+            </div> -->
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
