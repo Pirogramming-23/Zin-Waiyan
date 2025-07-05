@@ -63,15 +63,17 @@ recordHeadCheckbox.addEventListener("change", () => {
 // 전체 선택 버튼 구현
 function updateHeaderCheckbox() {
   const recordCheckboxes = document.querySelectorAll(".record__content input[type='checkbox']");
+
+  // content 버튼이 하나도 없으면 헤더 체크 해제
+  if (recordCheckboxes.length === 0) {
+    recordHeadCheckbox.checked = false;
+    return;
+  }
+
   const allChecked = Array.from(recordCheckboxes).every(input => input.checked);
 
-  // 다 체크 -> 헤더 체크
-  // 다 안 체크 -> 헤더 안 체크
-  if (allChecked) {
-    recordHeadCheckbox.checked = true;
-  } else {
-    recordHeadCheckbox.checked = false;
-  }
+  // 다 체크 -> 헤더 체크 / 하나라도 안 되어 있으면 헤더 체크 해제
+  recordHeadCheckbox.checked = allChecked;
 }
 function attachCheckboxListeners() {
   const recordCheckboxes = document.querySelectorAll(".record__content input[type='checkbox']");
@@ -147,16 +149,21 @@ function update(){
 }
 
 
+
+
+
+
+
 // Timer 기능
 let timeLeft = 0;
 let timerInterval = null;
-
+let endTime = null;
 
 function updateTimer(timeLeft) {
     // second, milliseconds 로 바뀌기
-    let minutes = Math.floor(timeLeft / (1000 * 60) % 60);
-    let seconds = Math.floor(timeLeft/1000%60);
-    let milliseconds = Math.floor(timeLeft%1000/10);
+    let minutes = Math.floor(timeLeft / (1000 * 60));
+    let seconds = Math.floor((timeLeft/1000)%60);
+    let milliseconds = Math.floor((timeLeft%1000)/10);
 
     // 0 두개 붙이기
     minutes = String(minutes).padStart(2,"0");
@@ -166,36 +173,63 @@ function updateTimer(timeLeft) {
     display.textContent = `${minutes} : ${seconds} : ${milliseconds}`;
 
 }
-
 function startTimer() {
-    // let timeLeft = prompt("설정할 시간을 초 단위로 입력하세요.");
     const secondsInput = prompt("설정할 시간을 초 단위로 입력하세요:");
     const seconds = parseInt(secondsInput);
 
+    if (isNaN(seconds) || seconds <= 0) {
+        alert("올바른 숫자를 입력하세요.");
+        return;
+    }
+
     timeLeft = seconds * 1000;
+    endTime = Date.now() + timeLeft;
+
     updateTimer(timeLeft);
 
     timerInterval = setInterval(() => {
-        timeLeft --;
-        updateTimer(timeLeft);
-
-        if(timeLeft <= 0){
+        const msLeft = endTime - Date.now();
+        
+        if (msLeft <= 0) {
             clearInterval(timerInterval);
-            timeLeft = 0;
-            updateTimer(timeLeft);
+            updateTimer(0);
             alert("시간초과!");
+        } else {
+            updateTimer(msLeft);
         }
-    },10)
+    }, 10);
 }
+// function startTimer() {
+//     // let timeLeft = prompt("설정할 시간을 초 단위로 입력하세요.");
+//     const secondsInput = prompt("설정할 시간을 초 단위로 입력하세요:");
+//     const seconds = parseInt(secondsInput);
+
+//     timeLeft = seconds * 1000;
+//     updateTimer(timeLeft);
+
+//     timerInterval = setInterval(() => {
+//         timeLeft --;
+//         updateTimer(timeLeft);
+
+//         if(timeLeft <= 0){
+//             clearInterval(timerInterval);
+//             timeLeft = 0;
+//             updateTimer(timeLeft);
+//             alert("시간초과!");
+//         }
+//     },10)
+// }
 function stopTimer() {clearInterval(timerInterval)}
-
-
 
 function resetTimer(){
     clearInterval(timerInterval);
     timeLeft = 0;
     updateTimer(timeLeft);
 }
+
+
+
+
 
 
 
