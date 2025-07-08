@@ -8,17 +8,36 @@
 
 ## 과제 목록 📕
 ### Week 1
-- Git/Github 기초 학습 및 실습
-- [추후 추가될 과제들]
+- 제로초 HTML/CSS/Flex/Grid 27강(3-9강)까지 수강하고 커밋
+  - 기술 : HTML/CSS
+- 깃허브 사이트 구현하고 커밋
+  - 기술 : HTML/CSS
+- 파이썬 코딩도장 20강까지 수강 및 퀴즈/심사문제 이미지 파일 커밋
+  - 기술 : 파이썬
+- 피로그래밍 홈페이지 만들고 커밋
+  - 기술 : HTML/CSS (반응형)
+- HTML/CSS를 이용한 Arsha 페이지 전체(스크롤 맨 밑 화면까지) 클론코딩 (팀 과제)
+  - 기술 : HTML/CSS
 
 ### Week 2
-- [추후 추가될 과제들]
-<br>
+- 🛒 쇼핑몰 미니게임 클론코딩
+  - 기술 : HTML/CSS/JavaScript
+- ⚾️ 숫자야구 게임
+  - 기술 : HTML/CSS/JavaScript
+- 파이썬 코딩도장 34, 35, 36, 38, 44, 45강까지 수강
+  - 기술 : 파이썬
+- 배스킨라빈스31 게임
+  - 기술 : 파이썬
+- Javascript를 이용한 스톱워치 만들기
+  - 기술 : JavaScript
+- Python 술 게임 만들기 (팀 과제)
+  - 기술 : 파이썬   
 
 ## ABOUT ME
 ### 🌱 현재 학습 중
 - Python
 - Java
+- HTML, CSS, Javascript
 
 ### 📫 프로필
 - 이름: 진웨이얀
