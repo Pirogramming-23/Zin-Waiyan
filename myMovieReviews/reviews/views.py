@@ -12,3 +12,18 @@ def reviews_detail(request,pk):
     review = Review.objects.get(id=pk)
     context = {"review":review}
     return render(request,"reviews_detail.html",context)
+
+def reviews_create(request):
+    if request == "POST":
+        Review.objects.create(
+            title = request.POST["title"],
+            title = request.POST["title"],
+            title = request.POST["title"],
+            title = request.POST["title"],
+            title = request.POST["title"],
+            title = request.POST["title"],
+            title = request.POST["title"],
+            title = request.POST["title"],
+            title = request.POST["title"],
+        )
+    return render(request,"reviews_create.html")
