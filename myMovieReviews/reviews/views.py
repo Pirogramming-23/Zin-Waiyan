@@ -55,5 +55,8 @@ def reviews_update(request,pk):
         review.review_text = request.POST["review_text"]
         review.save()
         return redirect(f"/review/{pk}")
+    hours = review.running_time // 60
+    minutes = review.running_time % 60
+    review.running_time_formatted = f"{hours}시간 {minutes}분"
     context = {"review":review}
     return render(request,"reviews_update.html",context)
