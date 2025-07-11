@@ -28,3 +28,8 @@ def reviews_create(request):
         )
         return redirect("/review/")
     return render(request,"reviews_create.html")
+
+def reviews_delete(request,pk):
+    review = Review.objects.get(id=pk)
+    review.delete()
+    return redirect("/review/")
