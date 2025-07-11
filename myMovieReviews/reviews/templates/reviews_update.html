@@ -117,7 +117,7 @@
         <a href="/review/create/" class="create">Add a New review</a>
     </header>
     <hr>
-    <form action="/review/create/" method="post">
+    <form action="/review/{{review.id}}/update/" method="post">
         {% csrf_token %}
         <div class="head">
             <span color="crimson">Movie </span>review 
@@ -125,30 +125,21 @@
         </div>
         <hr>
         <label for="title">제목:</label>
-        <input type="text" name="title"><br>
+        <input type="text" name="title" value="{{review.title}}"><br>
         <label for="year">개봉년도:</label>
-        <input type="text" name="year"><br>
+        <input type="text" name="year" value="{{review.year}}"><br>
         <label for="genre">장르:</label>
-        <select name="genre">
-            <option value="action">액션</option>
-            <option value="drama">드라마</option>
-            <option value="comedy">코미디</option>
-            <option value="sf">SF</option>
-            <option value="thriller">스릴러</option>
-            <option value="romance">로맨스</option>
-            <option value="animation">애니메이션</option>
-            <option value="documentary">다큐멘터리</option>
-        </select><br>
+        <input type="text" name="genre" value="{{review.genre}}"><br>
         <label for="review_star">별점:</label>
-        <input type="number" name="review_star"><br>
+        <input type="number" name="review_star" value="{{review.review_star}}"><br>
         <label for="running_time">러닝타임</label>
-        <input type="number" name="running_time"><br>
+        <input type="number" name="running_time" value="{{review.running_time}}"><br>
         <label for="review_text">리뷰:</label>
-        <textarea name="review_text" id="review_text" cols="30" rows="10"></textarea><br>
+        <textarea name="review_text" id="review_text" cols="30" rows="10">{{review.review_text}}</textarea><br>
         <label for="director">감독:</label>
-        <input type="text" name="director"><br>
+        <input type="text" name="director" value="{{review.director}}"><br>
         <label for="actors">배우:</label>
-        <input type="text" name="actors"><br>
+        <input type="text" name="actors" value="{{review.actors}}"><br>
         <div class="submit_container">
             <input type="submit" value="Save">
         </div>
