@@ -4,12 +4,20 @@ from .models import Review
 
 # Create your views here.
 def reviews_list(request):
-    reviews = Review.objects.all() # 모든 object 가져오기
+    # reviews = Review.objects.all() # 모든 object 가져오기
+    reviews = Review.objects.order_by("-review_star")  # 별점 내림차순
+    for review in reviews:
+        hours = review.running_time // 60
+        minutes = review.running_time % 60
+        review.running_time_formatted = f"{hours}시간 {minutes}분"
     context = {"reviews":reviews}
     return render(request,"reviews_list.html",context) #template으로 보내기
 
 def reviews_detail(request,pk):
     review = Review.objects.get(id=pk)
+    hours = review.running_time // 60
+    minutes = review.running_time % 60
+    review.running_time_formatted = f"{hours}시간 {minutes}분"
     context = {"review":review}
     return render(request,"reviews_detail.html",context)
 

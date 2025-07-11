@@ -129,11 +129,20 @@
         <label for="year">개봉년도:</label>
         <input type="text" name="year" value="{{review.year}}"><br>
         <label for="genre">장르:</label>
-        <input type="text" name="genre" value="{{review.genre}}"><br>
+        <select name="genre" required>
+            <option value="" disabled {% if not review.genre %}selected{% endif %}>---------</option>
+            <option value="Action" {% if review.genre == "Action" %}selected{% endif %}>액션</option>
+            <option value="Drama" {% if review.genre == "Drama" %}selected{% endif %}>드라마</option>
+            <option value="Comedy" {% if review.genre == "Comedy" %}selected{% endif %}>코미디</option>
+            <option value="SF" {% if review.genre == "SF" %}selected{% endif %}>SF</option>
+            <option value="Thriller" {% if review.genre == "Thriller" %}selected{% endif %}>스릴러</option>
+            <option value="Romance" {% if review.genre == "Romance" %}selected{% endif %}>로맨스</option>
+            <option value="Fantasy" {% if review.genre == "Fantasy" %}selected{% endif %}>판타지</option>
+        </select><br>        
         <label for="review_star">별점:</label>
-        <input type="number" name="review_star" value="{{review.review_star}}"><br>
+        <input type="number" name="review_star" step="any" value="{{review.review_star}}"><br>
         <label for="running_time">러닝타임</label>
-        <input type="number" name="running_time" value="{{review.running_time}}"><br>
+        <input type="number" name="running_time" value="{{review.running_time_formatted}}"><br>
         <label for="review_text">리뷰:</label>
         <textarea name="review_text" id="review_text" cols="30" rows="10">{{review.review_text}}</textarea><br>
         <label for="director">감독:</label>
