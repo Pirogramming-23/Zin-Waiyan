@@ -9,4 +9,4 @@ class Review(models.Model):
     director = models.CharField(max_length=32)
     actors = models.CharField(max_length=32)
     running_time = models.PositiveIntegerField()
-    content = models.TextField()
+    review_text = models.TextField()

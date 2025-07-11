@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Review
 
 
@@ -13,17 +13,18 @@ def reviews_detail(request,pk):
     context = {"review":review}
     return render(request,"reviews_detail.html",context)
 
+
 def reviews_create(request):
-    if request == "POST":
+    if request.method == "POST":
         Review.objects.create(
             title = request.POST["title"],
-            title = request.POST["title"],
-            title = request.POST["title"],
-            title = request.POST["title"],
-            title = request.POST["title"],
-            title = request.POST["title"],
-            title = request.POST["title"],
-            title = request.POST["title"],
-            title = request.POST["title"],
+            year = request.POST["year"],
+            genre = request.POST["genre"],
+            review_star = request.POST["review_star"],
+            director = request.POST["director"],
+            actors = request.POST["actors"],
+            running_time = request.POST["running_time"],
+            review_text = request.POST["review_text"],
         )
+        return redirect("/review/")
     return render(request,"reviews_create.html")
