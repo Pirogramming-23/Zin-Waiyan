@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            height: 1px;
+            background-color: lightgray;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #008DD5;
+        }
+
+        .create {
+            font-size: 14px;
+            color: #555;
+        }
+
+        img {
+            width: 20px;
+            vertical-align: middle;
+        }
+
+        form {
+            background-color: #f3f3f3;
+            width: 500px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .head {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .head span {
+            color: #008DD5;
+        }
+
+        label {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            padding: 6px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        input[type="submit"] {
+            align-self: flex-end;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background-color: hsl(200, 100%, 70%);
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #ddd;
+        }
+        .submit_container {
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <a href="/review" class="logo">my<span color="red">Movie</span>reviews</a>
+        <a href="/review/create/" class="create">Add a New review</a>
+    </header>
+    <hr>
+    <form action="/review/{{review.id}}/update/" method="post">
+        {% csrf_token %}
+        <div class="head">
+            <span color="crimson">Movie </span>review 
+            <img src="{% static 'images/popcorn.png' %}" alt="팝콘">
+        </div>
+        <hr>
+        <label for="title">제목:</label>
+        <input type="text" name="title" value="{{review.title}}"><br>
+        <label for="year">개봉년도:</label>
+        <input type="text" name="year" value="{{review.year}}"><br>
+        <label for="genre">장르:</label>
+        <select name="genre" required>
+            <option value="" disabled {% if not review.genre %}selected{% endif %}>---------</option>
+            <option value="Action" {% if review.genre == "Action" %}selected{% endif %}>액션</option>
+            <option value="Drama" {% if review.genre == "Drama" %}selected{% endif %}>드라마</option>
+            <option value="Comedy" {% if review.genre == "Comedy" %}selected{% endif %}>코미디</option>
+            <option value="SF" {% if review.genre == "SF" %}selected{% endif %}>SF</option>
+            <option value="Thriller" {% if review.genre == "Thriller" %}selected{% endif %}>스릴러</option>
+            <option value="Romance" {% if review.genre == "Romance" %}selected{% endif %}>로맨스</option>
+            <option value="Fantasy" {% if review.genre == "Fantasy" %}selected{% endif %}>판타지</option>
+        </select><br>        
+        <label for="review_star">별점:</label>
+        <input type="number" name="review_star" step="any" value="{{review.review_star}}"><br>
+        <label for="running_time">러닝타임</label>
+        <input type="number" name="running_time" value="{{review.running_time}}"><br>
+        <label for="review_text">리뷰:</label>
+        <textarea name="review_text" id="review_text" cols="30" rows="10">{{review.review_text}}</textarea><br>
+        <label for="director">감독:</label>
+        <input type="text" name="director" value="{{review.director}}"><br>
+        <label for="actors">배우:</label>
+        <input type="text" name="actors" value="{{review.actors}}"><br>
+        <div class="submit_container">
+            <input type="submit" value="Save">
+        </div>
+    </form>
+
+</body>
+</html>
