@@ -2,6 +2,7 @@
 from django.db import models
 from apps.tools.models import Tool
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Idea(models.Model):
@@ -27,6 +28,7 @@ class Idea(models.Model):
 
 class IdeaStar(models.Model):
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE)
-    
+    session_key = models.CharField(max_length=40, null=True, blank=True)  
+
     def __str__(self):
-        return self.idea.title
+        return f"Session {self.session_key} starred {self.idea.title}"

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+아이디어 디테일
+{% endblock %}
+
+{% block content %}
+<div class="idea_detail_title">
+    <h1>Idea Detail</h1>
+    <p>아이디어 세부내용 페이지입니다. 당신의 소중한 SW 아이디어들을 자세히 살펴보세요.</p>
+</div>
+
+<div class="idea_detail_card">
+    {% if idea.image %}
+            <a href="{% url 'tools:detail' tool.pk %}">
+                <img src="{{ idea.image.url }}" alt="업로드 이미지" class="detail_thumbnail"/>
+            </a>
+    {% else %}
+            <a href="{% url 'tools:detail' tool.pk %}">
+                <img src="{% static 'ideas/image/no-image.jpg' %}" alt="기본 이미지" class="detail_thumbnail"/>
+            </a>
+    {% endif %}
+    <h2 class="idea_title">
+        {{ idea.title }}
+        {% if is_starred %}
+            <span class="star-icon">⭐</span>
+        {% endif %}
+    </h2>
+
+    <ul class="idea_info">
+        <li><strong>1) 아이디어 관심도</strong>: {{ idea.interest }}</li>
+        <li><strong>2) 예상 개발 툴</strong>: {{ idea.devtool.name }}</li>
+        <li><strong>3) 아이디어 설명</strong>: {{ idea.description }}</li>
+    </ul>
+
+    <div class="detail_buttons">
+        <form method="post" action="{% url 'ideas:delete' idea.pk %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="delete_btn">삭제</button>
+        </form>
+        <a href="{% url 'ideas:main' %}" class="back_btn">목록</a>
+        <a href="{% url 'ideas:update' idea.pk %}" class="edit_btn">수정</a>
+    </div>
+</div>
+{% endblock %}

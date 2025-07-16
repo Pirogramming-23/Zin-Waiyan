@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+개발툴 Detail
+{% endblock %}
+
+{% block content %}
+<div class="devtool_title">
+    <h1>DevTool Detail</h1>
+    <p>개발툴 새부내용 페이지입니다. </p>
+</div>
+
+<div class="devtool_detail_card">
+    <h2>{{ tool.name }}</h2>
+    <p class="category">{{ tool.kind}}</p>
+    <p class="description">{{ tool.content}}</p>
+
+    <div class="related_ideas">
+        <strong>➤ 만들 수 있는 SW 목록</strong>
+        <ul>
+            {% for idea in tool.idea_set.all %}
+                <li>{{ idea.title }}</li>
+            {% empty %}
+                <li>관련된 아이디어가 없습니다.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="detail_buttons">
+        <a href="{% url 'tools:delete' tool.pk %}" class="btn red">삭제</a>
+        <a href="{% url 'tools:tools_list' %}" class="btn gray">목록</a>
+        <a href="{% url 'tools:update' tool.pk %}" class="btn blue">수정</a>
+    </div>
+</div>
+{% endblock %}
