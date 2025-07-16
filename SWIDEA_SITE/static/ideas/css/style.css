@@ -243,7 +243,7 @@ select {
 .devtool_card .description {
     font-size: 14px;
     line-height: 1.5;
-    color: #ddd;
+    color: hsl(0, 0%, 40%);
 }
 
 .devtool_detail_title {
@@ -288,7 +288,7 @@ select {
 .devtool_detail_card .description {
     margin-bottom: 30px;
     line-height: 1.5;
-    color: #eee;
+    color: hsl(0, 0%, 40%);
 }
 
 .related_ideas {
@@ -304,7 +304,7 @@ select {
 .related_ideas li {
     margin: 6px 0;
     padding-left: 10px;
-    color: #ddd;
+    color: hsl(0, 0%, 40%);
 }
 
 .detail_buttons {
