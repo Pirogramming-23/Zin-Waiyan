@@ -106,7 +106,7 @@ def update(request,pk):
             'form': form, 
             'idea':idea, 
         }
-        return render(request, 'idea/update.html', context=context)
+        return render(request, 'ideas/update.html', context=context)
     else:
         form = IdeaForm(request.POST, request.FILES, instance=idea) 
         if form.is_valid():
