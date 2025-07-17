@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+tool_update
+{% endblock %}
+
+{% block content %}
+<div class="devtool_title">
+    <h1>DevTool Detail Update</h1>
+    <p>개발툴 수정 페이지입니다.</p>
+</div>
+<form action="{% url 'tools:update' tool.pk%}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success">SUBMIT</button>
+</form>
+{% endblock %}

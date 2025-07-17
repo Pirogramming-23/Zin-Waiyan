@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+tool_create
+{% endblock %}
+
+{% block content %}
+<div class="devtool_title">
+    <h1>DevTool Register</h1>
+    <p>개발툴 등록 페이지입니다.</p>
+</div>
+<form action="{% url 'tools:create' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success">SUBMIT</button>
+</form>
+{% endblock %}

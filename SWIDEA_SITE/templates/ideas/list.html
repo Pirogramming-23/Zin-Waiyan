@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+아이디어 목록
+{% endblock %}
+
+{% block content %}
+<div class="idea_list_title">
+    <h1>Idea List</h1>
+    <p>나의 아이디어를 잊지 말고 기록해보세요</p>
+</div>
+<div class="sort_box">
+    <select name="sort" onchange="location = this.value;">
+        <option value="?sort=default">--정렬기준--</option>
+        <option value="?sort=popularity">관심기준</option>
+        <option value="?sort=created">등록순</option>
+        <option value="?sort=latest">최신순</option>
+        <option value="?sort=name">이름순</option>
+    </select>
+</div>
+<div class="idea_grid">
+    {% for idea in ideas %}
+    <div class="idea_card" data-id="{{ idea.pk }}">
+        <form method="post" action="{% url 'ideas:toggle_star' idea.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="star-icon" style="background: none; border: none; cursor: pointer;">
+            {% if idea.pk in starred_ids %}
+                ⭐
+            {% else %}
+                ☆
+            {% endif %}
+        </button>
+        </form>
+        {% if idea.image %}
+            <img src="{{ idea.image.url }}" alt="업로드 이미지" />
+        {% else %}
+            <img src="{% static 'ideas/image/no-image.jpg' %}" alt="기본 이미지" />
+        {% endif %}
+        <a href="{% url 'ideas:detail' idea.id %}">
+            {{ idea.title }}
+        </a>
+        </h3>
+        <p>예상 개발 툴 : {{idea.devtool.name}}</p>
+        <p>아이디어 관심도 : + {{ idea.interest }}
+
+        <form action="{% url 'ideas:adjust_interest' idea.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="direction" value="up">
+            <button type="submit">+</button>
+        </form>
+
+        <form action="{% url 'ideas:adjust_interest' idea.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="direction" value="down">
+            <button type="submit">-</button>
+        </form>
+        </p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
