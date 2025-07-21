@@ -134,3 +134,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = '/media/'             # 브라우저에서 접근할 URL 접두어
 
 MEDIA_ROOT = BASE_DIR / 'media'   # 실제 저장될 디렉토리 경로
+
+# for redirecting to login page if a user is not authenticated
+LOGIN_URL = '/login/'

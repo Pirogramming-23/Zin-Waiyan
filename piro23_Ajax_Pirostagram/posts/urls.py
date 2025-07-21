@@ -19,6 +19,8 @@ urlpatterns = [
     # Search
     path('search_post/',views.search_post,name='search_post'),
 
+    # signup
+    path('signup/', views.signup, name='signup'),
     # (Optional) 
     # path('search_user/', views.search_user, name='search_user'),
     # path('sort_post/', views.sort_post, name='sort_post'),
