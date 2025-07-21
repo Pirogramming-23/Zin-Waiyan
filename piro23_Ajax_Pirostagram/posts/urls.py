@@ -15,10 +15,6 @@ urlpatterns = [
     # Comments
     path('add_comment/<int:pk>/',views.add_comment,name='add_comment'),
     path('delete_comment/<int:pk>/',views.delete_comment,name='delete_comment'),
-    
-    # Stories
-    path('post_story/',views.post_story,name='post_story'),
-    path('delete_story/',views.delete_story,name='delete_story'),
 
     # Search
     path('search_post/',views.search_post,name='search_post'),
