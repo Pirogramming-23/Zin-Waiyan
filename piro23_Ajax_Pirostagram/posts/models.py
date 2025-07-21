@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Post:
+class Post(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     caption = models.TextField()
     image = models.ImageField(upload_to='posts/%Y%m%d',blank=True)
@@ -17,15 +17,18 @@ class Post:
     def __str__(self):
         return f'{self.user.username} post'
     
-class Like:
+class Like(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('user','post') # one like per user per post
+
     def __str__(self):
         return f'{self.user.username} liked {self.post.id}'
 
-class Comment:
+class Comment(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
