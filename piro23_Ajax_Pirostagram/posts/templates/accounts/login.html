@@ -1,7 +1,74 @@
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
-<a href="{% url 'signup' %}">Don't have an account? Sign up</a>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <style>
+        body {
+            background-color: #fafafa;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: white;
+            border: 1px solid #dbdbdb;
+            padding: 2rem;
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            font-size: 14px;
+            background-color: #fafafa;
+        }
+
+        .login-btn {
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            padding: 0.7rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #007dc1;
+        }
+
+        .bottom-link {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .bottom-link a {
+            color: #0095f6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 style="text-align:center;">Pirostagram Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="login-btn" type="submit">Login</button>
+        </form>
+        <div class="bottom-link">
+            <p>계정이 없으신가요? <a href="{% url 'posts:signup' %}">회원가입</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -137,3 +137,6 @@ MEDIA_ROOT = BASE_DIR / 'media'   # 실제 저장될 디렉토리 경로
 
 # for redirecting to login page if a user is not authenticated
 LOGIN_URL = '/login/'
+
+# for redirecting to posts:post_list after login 
+LOGIN_REDIRECT_URL = '/post_list/'
