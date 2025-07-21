@@ -81,32 +81,6 @@ def like_ajax(request):
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-# @csrf_exempt
-# @login_required
-# def add_comment_ajax(request, pk):
-#     if request.method == 'POST':
-#         try:
-#             data = json.loads(request.body)  # ✅ load JSON
-#             content = data.get('content', '').strip()
-#             if not content:
-#                 return JsonResponse({'error': 'Empty content'}, status=400)
-
-#             post = get_object_or_404(Post, pk=pk)
-#             comment = Comment.objects.create(
-#                 user=request.user,
-#                 post=post,
-#                 content=content
-#             )
-
-#             return JsonResponse({
-#                 'username': request.user.username,
-#                 'content': comment.content
-#             })
-#         except Exception as e:
-#             return JsonResponse({'error': str(e)}, status=500)
-
-#     return JsonResponse({'error': 'Invalid request'}, status=400)
-
 @csrf_exempt
 @login_required
 @require_POST
