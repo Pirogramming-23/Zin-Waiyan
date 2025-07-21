@@ -63,6 +63,8 @@
         <h2 style="text-align:center;">Pirostagram Login</h2>
         <form method="post">
             {% csrf_token %}
+            {% comment %} for redirecting to posts:post_list after login {% endcomment %}
+            <input type="hidden" name="next" value="{% url 'posts:post_list' %}"> 
             {{ form.as_p }}
             <button class="login-btn" type="submit">Login</button>
         </form>
