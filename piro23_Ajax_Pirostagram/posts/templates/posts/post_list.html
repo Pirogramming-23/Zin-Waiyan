@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/feed.css' %}">
+
+<div class="feed-container">
+
+    <!-- Story Bar -->
+    <div class="story-bar">
+        {% for i in "12345678" %}
+        <div class="story">
+            <img src="{% static 'img/default-profile.jpg' %}" alt="story" />
+            <p>user_{{ i }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Posts -->
+    {% for post in posts %}
+    <div class="post">
+        <!-- Header -->
+        <div class="post-header">
+            <div class="post-user-info">
+                <img src="{% static 'img/default-profile.jpg' %}" class="profile-img" />
+                <span class="username">{{ post.user.username }}</span>
+            </div>
+            {% if user == post.user %}
+                <a href="{% url 'posts:delete_post' post.pk %}" class="delete-btn">🗑️</a>
+            {% endif %}
+
+        </div>
+
+        <!-- Post Image -->
+        <div class="post-image">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Post image">
+            {% else %}
+                <img src="{% static 'img/default-post.jpg' %}" alt="Post image">
+            {% endif %}
+        </div>
+        
+        <!-- Action buttons -->
+        <!-- Like -->
+        <div class="post-actions">
+            <button 
+                class="like-btn" 
+                data-post-id="{{ post.id }}"
+                onclick="onClickLike({{ post.id }}, 'like')">
+                {% if post.has_liked %}
+                    💙
+                {% else %}
+                    🤍
+                {% endif %}
+            </button>
+            <span class="post-id-{{ post.id }} post__like">{{ post.likes.count }} likes</span>
+        </div>
+
+
+        <!-- Caption -->
+        <div class="post-caption">
+            <strong>{{ post.user.username }}</strong> {{ post.caption }}
+        </div>
+
+        <!-- Comment Section -->
+        <div id="comments-{{ post.id }}">
+            {% for comment in post.comments.all %}
+                <div id="comment-{{ comment.id }}" class="comment-item">
+                    <strong>{{ comment.user.username }}</strong> {{ comment.content }}
+                    {% if comment.user == request.user %}
+                        <button class="delete-comment-btn" data-comment-id="{{ comment.id }}">🗑️</button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Add Comment -->
+        <form class="comment-form" data-post-id="{{ post.id }}">
+            {% csrf_token %}
+            <input type="text" name="content" placeholder="Add a comment..." required />
+            <button type="submit">Post</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+
+

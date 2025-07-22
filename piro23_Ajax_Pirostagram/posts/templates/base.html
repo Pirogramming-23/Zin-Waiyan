@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>Pirostagram</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="{% url 'posts:post_list' %}" class="logo">
+                <img src="{% static 'img/piro_logo.png' %}" alt="Pirostagram logo" class="logo-img">
+                <span class="logo-text">Pirostagram</span>
+            </a>
+        </div>
+
+
+        <div class="navbar-center">
+            <form action="{% url 'posts:search_post' %}" method="get" class="search-form">
+                <input type="text" name="q" placeholder="Search" />
+                <button type="submit">🔍</button>
+            </form>
+        </div>
+
+        <div class="navbar-right">
+            {% if user.is_authenticated %}
+                <a style="color: black; font-size:22px;">{{user.username}}</a>
+                <a href="{% url 'posts:create_post' %}">＋ New Post</a>
+                <form action="{% url 'posts:logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+
+            {% else %}
+                <a href="{% url 'posts:login' %}">Login</a>
+                <a href="{% url 'posts:signup' %}">Sign Up</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="main-container">
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const likeAjaxUrl = "{% url 'posts:like_ajax' %}";
+    </script>
+    <script src="{% static 'js/ajax.js' %}"></script>
+</body>
+</html>
